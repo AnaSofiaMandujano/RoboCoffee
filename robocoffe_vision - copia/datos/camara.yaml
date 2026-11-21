@@ -1,0 +1,105 @@
+fecha: 2026-11-12 20:06
+resolucion:
+- 1920
+- 1080
+n_vistas: 72
+rms_px: 0.4564
+error_medio_px: 0.436
+error_max_px: 0.9085
+modelo: estándar (5 coef.)
+K:
+- - 1388.4507
+  - 0.0
+  - 997.0725
+- - 0.0
+  - 1391.6964
+  - 589.7323
+- - 0.0
+  - 0.0
+  - 1.0
+dist:
+- -0.087021
+- 0.210814
+- 0.006695
+- 0.005098
+- -0.16966
+fov_horizontal_deg: 69.32
+fov_vertical_deg: 42.41
+huella_piso_mm_a_altura_config:
+- 2655
+- 1490
+mm_por_px_piso: 1.383
+mm_por_px_marcador_robot: 1.22
+vistas:
+  calib_000.png: 0.3814
+  calib_001.png: 0.4888
+  calib_002.png: 0.44
+  calib_003.png: 0.4105
+  calib_004.png: 0.3516
+  calib_005.png: 0.43
+  calib_006.png: 0.4399
+  calib_007.png: 0.3426
+  calib_008.png: 0.442
+  calib_009.png: 0.3195
+  calib_010.png: 0.3556
+  calib_011.png: 0.4988
+  calib_012.png: 0.5249
+  calib_013.png: 0.3793
+  calib_014.png: 0.3598
+  calib_015.png: 0.377
+  calib_016.png: 0.5243
+  calib_017.png: 0.4221
+  calib_018.png: 0.8462
+  calib_019.png: 0.448
+  calib_020.png: 0.3625
+  calib_021.png: 0.5729
+  calib_022.png: 0.469
+  calib_023.png: 0.3441
+  calib_024.png: 0.5395
+  calib_025.png: 0.2878
+  calib_026.png: 0.3432
+  calib_027.png: 0.3242
+  calib_028.png: 0.4727
+  calib_029.png: 0.4961
+  calib_030.png: 0.6856
+  calib_032.png: 0.8771
+  calib_033.png: 0.5588
+  calib_034.png: 0.6553
+  calib_035.png: 0.9085
+  calib_044.png: 0.4534
+  calib_045.png: 0.5236
+  calib_046.png: 0.309
+  calib_047.png: 0.3561
+  calib_048.png: 0.3001
+  calib_049.png: 0.4212
+  calib_050.png: 0.4092
+  calib_051.png: 0.3494
+  calib_052.png: 0.5446
+  calib_053.png: 0.5162
+  calib_054.png: 0.571
+  calib_055.png: 0.3612
+  calib_056.png: 0.3189
+  calib_057.png: 0.3403
+  calib_058.png: 0.3437
+  calib_059.png: 0.3035
+  calib_060.png: 0.3294
+  calib_061.png: 0.3252
+  calib_062.png: 0.3288
+  calib_063.png: 0.3581
+  calib_064.png: 0.2666
+  calib_065.png: 0.4039
+  calib_066.png: 0.3116
+  calib_067.png: 0.2659
+  calib_068.png: 0.361
+  calib_069.png: 0.6189
+  calib_070.png: 0.7705
+  calib_071.png: 0.3888
+  calib_072.png: 0.4264
+  calib_073.png: 0.5228
+  calib_074.png: 0.3586
+  calib_075.png: 0.3631
+  calib_076.png: 0.3722
+  calib_077.png: 0.3819
+  calib_078.png: 0.4273
+  calib_079.png: 0.337
+  calib_080.png: 0.3746

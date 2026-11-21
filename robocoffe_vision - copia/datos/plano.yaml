@@ -1,0 +1,132 @@
+fecha: 2026-11-17 17:40
+n_cuadros: 30
+marcadores_usados:
+- 30
+- 31
+- 32
+- 33
+- 34
+- 35
+signo_y_marcador: 1.0
+signo_arriba: -1.0
+rvec:
+- -0.0307524
+- -0.04593606
+- -0.01825135
+tvec:
+- -1238.7122
+- -668.7207
+- 1946.542
+R:
+- - 0.99877873
+  - 0.01894716
+  - -0.04562956
+- - -0.01753492
+  - 0.99936077
+  - 0.03115412
+- - 0.04619067
+  - -0.03031596
+  - 0.99847252
+centro_camara_mm:
+- 1135.56
+- 750.77
+- -1979.26
+altura_camara_mm: 1979.26
+inclinacion_deg: 3.167
+rms_plano_mm: 3.523
+reproyeccion_px: 3.6681
+nota_H: 'H_px_a_mm: píxel SIN distorsión (undistortPoints con P=K) -> (x,y) mm en
+  z=0'
+H_px_a_mm:
+- - 1.3618889775
+  - 0.0004738127
+  - -154.6413866379
+- - 0.0022948755
+  - 1.4126066892
+  - -157.9425655462
+- - -3.22813e-05
+  - 2.19891e-05
+  - 1.0
+H_mm_a_px:
+- - 0.73607993
+  - -0.00201383
+  - 113.51035208
+- - 0.00145738
+  - 0.70531667
+  - 111.62489505
+- - 2.373e-05
+  - -1.557e-05
+  - 1.0
+marcadores:
+  30:
+    nominal:
+    - 100.0
+    - 100.0
+    medido:
+    - 98.82
+    - 99.84
+    error_mm: 1.19
+    lado_mm: 143.6
+    giro_deg: 0.5
+    detecciones: 30
+    usado: true
+  31:
+    nominal:
+    - 900.0
+    - 100.0
+    medido:
+    - 895.84
+    - 103.2
+    error_mm: 5.25
+    lado_mm: 145.8
+    giro_deg: -0.1
+    detecciones: 30
+    usado: true
+  32:
+    nominal:
+    - 1700.0
+    - 100.0
+    medido:
+    - 1703.33
+    - 102.04
+    error_mm: 3.91
+    lado_mm: 148.11
+    giro_deg: -0.4
+    detecciones: 30
+    usado: true
+  33:
+    nominal:
+    - 100.0
+    - 1100.0
+    medido:
+    - 97.93
+    - 1097.18
+    error_mm: 3.5
+    lado_mm: 142.34
+    giro_deg: 0.9
+    detecciones: 30
+    usado: true
+  34:
+    nominal:
+    - 900.0
+    - 1100.0
+    medido:
+    - 901.8
+    - 1101.05
+    error_mm: 2.08
+    lado_mm: 144.29
+    giro_deg: 0.7
+    detecciones: 30
+    usado: true
+  35:
+    nominal:
+    - 1700.0
+    - 1100.0
+    medido:
+    - 1702.42
+    - 1097.2
+    error_mm: 3.7
+    lado_mm: 146.5
+    giro_deg: 0.7
+    detecciones: 30
+    usado: true

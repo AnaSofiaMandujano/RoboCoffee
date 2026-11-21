@@ -1,0 +1,87 @@
+from pathlib import Path
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+DIR = Path(__file__).resolve().parent
+TOL_MM = 150.0
+OUTLIER_MM = 200.0
+
+archivos_rep = sorted(DIR.glob("resultados_repetibilidad_* sesion.csv"))
+dfs = []
+for idx, f in enumerate(archivos_rep, start=1):
+    df_tmp = pd.read_csv(f)
+    df_tmp["session_lbl"] = f"Session {idx}"
+    dfs.append(df_tmp)
+
+df_all = pd.concat(dfs, ignore_index=True).drop_duplicates(
+    subset=["sesion", "ciclo", "tipo", "destino", "t_s"]
+)
+df_all["cumple_150"] = (df_all["error_mm"] <= TOL_MM).astype(int)
+autos = df_all[df_all["tipo"] == "auto"].copy()
+
+def limpiar_trayectoria(tdf, salto_max_mm=120.0):
+    valido = tdf["x_o1_mm"].between(50, 1750) & tdf["y_o1_mm"].between(200, 1050)
+    tdf = tdf[valido].reset_index(drop=True)
+    paso = np.hypot(tdf["x_o1_mm"].diff().fillna(0), tdf["y_o1_mm"].diff().fillna(0))
+    return tdf[paso <= salto_max_mm].reset_index(drop=True)
+
+archivos_traj = sorted([f for f in DIR.glob("trayectoria_*sesion.*") if f.suffix.lower() in (".csv", ".xlsx")])
+
+plt.rcParams.update({"font.size": 9, "axes.titlesize": 9.5, "axes.labelsize": 9})
+# constrained_layout=True alinea los 3 títulos sin recortar el panel (a)
+fig, axes = plt.subplots(1, 3, figsize=(13.5, 4.0), constrained_layout=True)
+ang = np.linspace(0, 2 * np.pi, 200)
+
+# (a) Drift across consecutive cycles
+for ses_lbl, grp in autos.groupby("session_lbl"):
+    por_c = grp.groupby("ciclo")["error_mm"].mean()
+    axes[0].plot(por_c.index, por_c.values, "o-", lw=1.4, markersize=5, label=ses_lbl)
+axes[0].axhline(TOL_MM, color="#d62728", linestyle="--", lw=1.4, label="150 mm bound")
+axes[0].set_xticks([1, 2, 3, 4, 5])
+axes[0].set_ylim(30, 315)
+axes[0].set_title("(a) Cumulative drift by cycle")
+axes[0].set_xlabel("Consecutive cycle")
+axes[0].set_ylabel("Mean radial error (mm)")
+axes[0].grid(True, alpha=0.3)
+axes[0].legend(loc="upper left", fontsize=7.5, frameon=True)
+
+# (b) Spatial landing dispersion
+for dest, col, mk, lbl in [("B", "#1f77b4", "o", "Station B (outbound)"),
+                           ("A", "#ff7f0e", "s", "Station A (return)")]:
+    sub = autos[autos["destino"] == dest]
+    axes[1].scatter(sub["dx_mm"], sub["dy_mm"], c=col, marker=mk, s=38, alpha=0.85, label=lbl)
+axes[1].plot(TOL_MM * np.cos(ang), TOL_MM * np.sin(ang), color="#d62728", linestyle="--", lw=1.4, label="150 mm radius")
+axes[1].axhline(0, color="gray", lw=0.7)
+axes[1].axvline(0, color="gray", lw=0.7)
+axes[1].set_aspect("equal", "box")
+axes[1].set_xlim(-300, 300)
+axes[1].set_ylim(-180, 225)
+axes[1].set_title("(b) Target arrival dispersion")
+axes[1].set_xlabel(r"$\Delta x$ error (mm)")
+axes[1].set_ylabel(r"$\Delta y$ error (mm)")
+axes[1].grid(True, alpha=0.3)
+axes[1].legend(loc="lower left", fontsize=7.2, frameon=True)
+
+# (c) Consolidated top-down trajectories
+for idx, f in enumerate(archivos_traj, start=1):
+    tdf = pd.read_excel(f) if f.suffix.lower() == ".xlsx" else pd.read_csv(f)
+    tdf_c = limpiar_trayectoria(tdf)
+    axes[2].plot(tdf_c["x_o1_mm"], tdf_c["y_o1_mm"], lw=1.0, alpha=0.85, label=f"Session {idx}")
+
+for nombre, (px, py) in [("A", (216, 621)), ("B", (1300, 600))]:
+    axes[2].plot(px, py, "rx", markersize=8, markeredgewidth=1.8)
+    axes[2].plot(px + TOL_MM * np.cos(ang), py + TOL_MM * np.sin(ang), color="#d62728", linestyle="--", lw=1.2)
+    axes[2].text(px + 25, py + 35, nombre, fontsize=10, fontweight="bold")
+axes[2].set_xlim(0, 1800)
+axes[2].set_ylim(0, 1200)
+axes[2].set_aspect("equal", "box")
+axes[2].set_title("(c) Filtered arena trajectories")
+axes[2].set_xlabel("World X (mm)")
+axes[2].set_ylabel("World Y (mm)")
+axes[2].grid(True, alpha=0.3)
+axes[2].legend(loc="lower right", fontsize=7.5, frameon=True)
+
+plt.savefig(DIR / "physical_runs_results.pdf", bbox_inches="tight", pad_inches=0.08)
+plt.savefig(DIR / "physical_runs_results.png", dpi=300, bbox_inches="tight", pad_inches=0.08)
+print("Actualizado con títulos completos: physical_runs_results.pdf")
