@@ -1,6 +1,0 @@
-opencv-contrib-python>=4.8
-numpy
-pyyaml
-pillow
-pandas
-matplotlib
