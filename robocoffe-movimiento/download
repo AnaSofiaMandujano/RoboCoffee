@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+# registros que generan las corridas (no son codigo)
+transiciones_*.csv
+transiciones_sim.csv
+movimiento_*.csv
+datos_pruebas_*/
+calib_resultados.txt
+webots/controllers/oak9_entregas/log_entregas.csv
+webots/controllers/oak9_entregas/transiciones_webots.csv
